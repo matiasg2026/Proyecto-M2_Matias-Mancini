@@ -2,7 +2,7 @@ MiniBlog API
 
 API REST desarrollada con Node.js, Express y PostgreSQL para gestionar autores y publicaciones de un MiniBlog.
 
-El proyecto implementa operaciones CRUD para las entidades authors y posts, validaciones de datos, manejo de errores, tests automatizados y documentación mediante OpenAPI.
+El proyecto implementa operaciones CRUD para las entidades authors y posts, validaciones de datos, manejo centralizado de errores, tests automatizados y documentación mediante OpenAPI.
 
 👨‍💻 Autor
 
@@ -10,17 +10,11 @@ Matias Mancini
 
 Proyecto desarrollado como parte del Proyecto M2 - Backend.
 
-Internal URL utilizada:
-
-PENDIENTE_DE_COMPLETAR
-
 📦 Entregable
 
 Repositorio de GitHub:
 
-PENDIENTE_DE_COMPLETAR
-
-El enlace será agregado una vez publicado el proyecto en GitHub.
+https://github.com/matimancini72-prog/Proyecto-M2_Matias-Mancini
 
 📋 Descripción del proyecto
 
@@ -30,7 +24,7 @@ Crear, consultar, actualizar y eliminar autores.
 Crear, consultar, actualizar y eliminar publicaciones.
 Consultar publicaciones asociadas a un autor.
 Validar los datos recibidos mediante middlewares.
-Gestionar errores HTTP.
+Gestionar errores HTTP mediante un middleware global.
 Persistir la información utilizando PostgreSQL.
 Ejecutar tests automatizados con Vitest y Supertest.
 Consultar la documentación de la API mediante OpenAPI.
@@ -51,16 +45,34 @@ proyecto-m2_matias-mancini/
 │   └── openapi.yaml
 │
 ├── sql/
-│   └── schema.sql
-│    
+│   ├── schema.sql
+│   └── seed.sql
+│
 ├── src/
 │   ├── controllers/
+│   │   ├── authorsController.js
+│   │   └── postsController.js
+│   │
+│   ├── db/
+│   │   └── db.js
+│   │
 │   ├── helpers/
+│   │   └── validators.js
+│   │
 │   ├── middlewares/
+│   │   ├── errorHandler.js
+│   │   ├── validateAuthor.js
+│   │   └── validatePost.js
+│   │
 │   ├── routes/
+│   │   ├── authors.js
+│   │   └── posts.js
+│   │
 │   ├── services/
+│   │   ├── authorsService.js
+│   │   └── postsService.js
+│   │
 │   ├── app.js
-│   ├── db.js
 │   └── server.js
 │
 ├── tests/
@@ -72,7 +84,8 @@ proyecto-m2_matias-mancini/
 ├── .gitignore
 ├── package.json
 ├── package-lock.json
-└── README.md
+├── README.md
+└── vitest.config.js
 💻 Ejecución local
 Requisitos
 
@@ -83,11 +96,8 @@ npm
 PostgreSQL
 Git
 1. Clonar el repositorio
-git clone URL_DEL_REPOSITORIO
-cd proyecto-m2_matias-mancini
-
-Reemplazar URL_DEL_REPOSITORIO por la URL del repositorio de GitHub.
-
+git clone https://github.com/matimancini72-prog/Proyecto-M2_Matias-Mancini.git
+cd Proyecto-M2_Matias-Mancini
 2. Instalar las dependencias
 
 Desde la carpeta raíz del proyecto:
@@ -126,13 +136,22 @@ El archivo:
 
 sql/schema.sql
 
-contiene las instrucciones SQL necesarias para crear las tablas utilizadas por la aplicación.
+contiene las instrucciones necesarias para crear las tablas authors y posts, incluyendo claves primarias, clave foránea, restricciones NOT NULL y UNIQUE.
 
 Para ejecutar el setup desde PostgreSQL:
 
 psql -U postgres -d miniblog -f sql/schema.sql
+Seed SQL
 
-También puede ejecutarse utilizando la herramienta de PostgreSQL disponible en el entorno local.
+El archivo:
+
+sql/seed.sql
+
+contiene datos iniciales para realizar pruebas de la aplicación.
+
+Para ejecutar el seed:
+
+psql -U postgres -d miniblog -f sql/seed.sql
 
 Las principales tablas utilizadas son:
 
@@ -150,7 +169,7 @@ content
 published
 created_at
 
-posts.author_id mantiene la relación con authors.id.
+La columna posts.author_id mantiene la relación 1 con authors.id.
 
 ▶️ Ejecutar la aplicación
 Modo desarrollo
@@ -169,13 +188,17 @@ Para ejecutar los tests:
 
 npm test
 
-Los tests actuales verifican diferentes comportamientos de la API.
+Actualmente existen 12 tests automatizados.
 
 Authors
 Rechazo de author sin nombre.
 Rechazo de email inválido.
 Rechazo de email duplicado.
 Creación correcta de un author.
+Obtención de todos los authors.
+Obtención de un author por ID.
+Respuesta 404 cuando el author no existe.
+Eliminación correcta de un author.
 Posts
 Rechazo de post sin author_id.
 Rechazo de post con título vacío.
@@ -230,6 +253,7 @@ Nombre como texto.
 Nombre no vacío.
 Email obligatorio.
 Formato válido del email.
+Email único.
 Posts
 
 Se valida:
@@ -242,19 +266,24 @@ Título no vacío.
 Contenido obligatorio.
 Contenido como texto.
 Contenido no vacío.
+Existencia del author antes de crear o actualizar un post.
 
 Los errores de validación utilizan el código:
 
 400 Bad Request
 
-Ejemplo:
+Cuando se intenta utilizar un author inexistente para un post, la API responde:
+
+404 Not Found
+
+Ejemplo de error:
 
 {
   "error": "El título no puede estar vacío"
 }
 🚂 Deployment en Railway
 
-La aplicación puede desplegarse utilizando Railway.
+La aplicación será desplegada utilizando Railway.
 
 1. Crear el proyecto
 
@@ -266,40 +295,32 @@ Railway utilizará el proyecto de Node.js para ejecutar la aplicación.
 
 Dentro del proyecto de Railway se debe agregar una instancia de PostgreSQL.
 
-Railway proporciona las variables necesarias para conectarse a la base de datos.
+Railway proporciona las variables necesarias para realizar la conexión entre la aplicación y la base de datos.
 
 3. Variables de entorno
 
-En el servicio de la aplicación se deben configurar las variables necesarias para la conexión.
+En el servicio de la aplicación se deben configurar las variables necesarias para la conexión a PostgreSQL.
 
-Ejemplo:
+Los valores reales serán proporcionados por Railway y no deben publicarse en este README.
 
-PORT=3001
-DB_USER=...
-DB_HOST=...
-DB_NAME=...
-DB_PASSWORD=...
-DB_PORT=5432
+4. Base de datos en producción
 
-Los valores reales son proporcionados por Railway y no deben publicarse en este README.
+Una vez creado PostgreSQL en Railway, se deberán ejecutar los scripts:
 
-4. Internal URL
+sql/schema.sql
+sql/seed.sql
 
-Railway proporciona una Internal URL para la comunicación interna entre servicios del proyecto.
-
-Esta URL puede utilizarse para que la aplicación se comunique con PostgreSQL dentro del entorno de Railway, según la configuración utilizada.
-
-Internal URL utilizada:
-
-PENDIENTE_DE_COMPLETAR
-
+para crear la estructura de la base de datos y cargar los datos iniciales.
 
 5. Public URL
 
-Railway también proporciona una URL pública para acceder a la API desde Internet.
+Una vez realizado correctamente el deployment, Railway proporcionará una URL pública para acceder a la API desde Internet.
 
+Public URL:
 
-Una vez realizado el deployment, reemplazar los valores anteriores por las URLs reales proporcionadas por Railway.
+PENDIENTE_DE_COMPLETAR
+
+Esta URL será actualizada una vez finalizado el deployment.
 
 🤖 Registro del uso de AI
 
@@ -317,5 +338,3 @@ Documentar los endpoints mediante OpenAPI.
 Revisar errores encontrados durante el desarrollo.
 
 El código fue implementado, probado y revisado durante el desarrollo del proyecto, utilizando la IA como herramienta de asistencia y aprendizaje.
-
-
