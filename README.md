@@ -4,17 +4,15 @@ API REST desarrollada con Node.js, Express y PostgreSQL para gestionar autores y
 
 El proyecto implementa operaciones CRUD para las entidades authors y posts, validaciones de datos, manejo centralizado de errores, tests automatizados y documentación mediante OpenAPI.
 
+🔗 Enlaces del proyecto
+GitHub: https://github.com/matiasg2026/Proyecto-M2_Matias-Mancini
+API desplegada en Railway: https://proyecto-m2matias-mancini-production.up.railway.app
+API local: http://localhost:3001
 👨‍💻 Autor
 
 Matias Mancini
 
 Proyecto desarrollado como parte del Proyecto M2 - Backend.
-
-📦 Entregable
-
-Repositorio de GitHub:
-
-https://github.com/matimancini72-prog/Proyecto-M2_Matias-Mancini
 
 📋 Descripción del proyecto
 
@@ -79,7 +77,6 @@ proyecto-m2_matias-mancini/
 │   ├── authors.test.js
 │   └── posts.test.js
 │
-├── .env
 ├── .env.example
 ├── .gitignore
 ├── package.json
@@ -96,7 +93,7 @@ npm
 PostgreSQL
 Git
 1. Clonar el repositorio
-git clone https://github.com/matimancini72-prog/Proyecto-M2_Matias-Mancini.git
+git clone https://github.com/matiasg2026/Proyecto-M2_Matias-Mancini.git
 cd Proyecto-M2_Matias-Mancini
 2. Instalar las dependencias
 
@@ -152,16 +149,18 @@ contiene datos iniciales para realizar pruebas de la aplicación.
 Para ejecutar el seed:
 
 psql -U postgres -d miniblog -f sql/seed.sql
-
-Las principales tablas utilizadas son:
+Principales tablas
 
 Authors
+
 id
 name
 email
 bio
 created_at
+
 Posts
+
 id
 author_id
 title
@@ -169,17 +168,13 @@ content
 published
 created_at
 
-La columna posts.author_id mantiene la relación 1 con authors.id.
+La columna posts.author_id mantiene la relación con authors.id.
 
 ▶️ Ejecutar la aplicación
 Modo desarrollo
 npm run dev
 Modo normal
 npm start
-
-Por defecto, la aplicación se ejecuta en:
-
-http://localhost:3001
 🧪 Tests
 
 El proyecto utiliza Vitest y Supertest para realizar pruebas automatizadas sobre los endpoints.
@@ -188,7 +183,7 @@ Para ejecutar los tests:
 
 npm test
 
-Actualmente existen 12 tests automatizados.
+Actualmente existen 12 tests automatizados, todos funcionando correctamente.
 
 Authors
 Rechazo de author sin nombre.
@@ -283,45 +278,28 @@ Ejemplo de error:
 }
 🚂 Deployment en Railway
 
-La aplicación será desplegada utilizando Railway.
+La aplicación está desplegada en Railway y conectada a una instancia de PostgreSQL.
 
-1. Crear el proyecto
+API pública
 
-Se debe crear un nuevo proyecto en Railway y conectar el repositorio de GitHub.
+La API puede ser utilizada desde:
 
-Railway utilizará el proyecto de Node.js para ejecutar la aplicación.
+https://proyecto-m2matias-mancini-production.up.railway.app
 
-2. Configurar PostgreSQL
+Base de datos
 
-Dentro del proyecto de Railway se debe agregar una instancia de PostgreSQL.
+La aplicación utiliza PostgreSQL alojado en Railway.
 
-Railway proporciona las variables necesarias para realizar la conexión entre la aplicación y la base de datos.
+La conexión se configura mediante variables de entorno proporcionadas por Railway.
 
-3. Variables de entorno
+Las credenciales reales no se encuentran almacenadas en el repositorio.
 
-En el servicio de la aplicación se deben configurar las variables necesarias para la conexión a PostgreSQL.
+Endpoints de producción
 
-Los valores reales serán proporcionados por Railway y no deben publicarse en este README.
+Ejemplos:
 
-4. Base de datos en producción
-
-Una vez creado PostgreSQL en Railway, se deberán ejecutar los scripts:
-
-sql/schema.sql
-sql/seed.sql
-
-para crear la estructura de la base de datos y cargar los datos iniciales.
-
-5. Public URL
-
-Una vez realizado correctamente el deployment, Railway proporcionará una URL pública para acceder a la API desde Internet.
-
-Public URL:
-
-PENDIENTE_DE_COMPLETAR
-
-Esta URL será actualizada una vez finalizado el deployment.
-
+GET https://proyecto-m2matias-mancini-production.up.railway.app/authors
+GET https://proyecto-m2matias-mancini-production.up.railway.app/posts
 🤖 Registro del uso de AI
 
 Durante el desarrollo del proyecto se utilizó inteligencia artificial como herramienta de apoyo.
