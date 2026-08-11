@@ -5,8 +5,8 @@ API REST desarrollada con Node.js, Express y PostgreSQL para gestionar autores y
 El proyecto implementa operaciones CRUD para las entidades authors y posts, validaciones de datos, manejo centralizado de errores, tests automatizados y documentación mediante OpenAPI.
 
 🔗 Enlaces del proyecto
-GitHub: https://github.com/matiasg2026/Proyecto-M2_Matias-Mancini
-API desplegada en Railway: https://proyecto-m2matias-mancini-production.up.railway.app
+Repositorio de GitHub: Proyecto M2 - GitHub
+API desplegada en Railway: MiniBlog API - Railway
 API local: http://localhost:3001
 👨‍💻 Autor
 
@@ -40,6 +40,12 @@ Swagger
 proyecto-m2_matias-mancini/
 │
 ├── docs/
+│   ├── prompts/
+│   │   ├── Imagen01.png
+│   │   ├── Imagen02.png
+│   │   ├── ...
+│   │   └── Imagen19.png
+│   │
 │   └── openapi.yaml
 │
 ├── sql/
@@ -133,7 +139,13 @@ El archivo:
 
 sql/schema.sql
 
-contiene las instrucciones necesarias para crear las tablas authors y posts, incluyendo claves primarias, clave foránea, restricciones NOT NULL y UNIQUE.
+contiene las instrucciones necesarias para crear las tablas authors y posts, incluyendo:
+
+Claves primarias.
+Clave foránea.
+Restricciones NOT NULL.
+Restricción UNIQUE.
+Relación entre autores y publicaciones.
 
 Para ejecutar el setup desde PostgreSQL:
 
@@ -150,23 +162,21 @@ Para ejecutar el seed:
 
 psql -U postgres -d miniblog -f sql/seed.sql
 Principales tablas
-
 Authors
-
-id
-name
-email
-bio
-created_at
-
+Campo	Tipo
+id	INTEGER
+name	VARCHAR
+email	VARCHAR
+bio	TEXT
+created_at	TIMESTAMP
 Posts
-
-id
-author_id
-title
-content
-published
-created_at
+Campo	Tipo
+id	INTEGER
+author_id	INTEGER
+title	VARCHAR
+content	TEXT
+published	BOOLEAN
+created_at	TIMESTAMP
 
 La columna posts.author_id mantiene la relación con authors.id.
 
@@ -175,6 +185,11 @@ Modo desarrollo
 npm run dev
 Modo normal
 npm start
+
+Por defecto, la aplicación se ejecuta en:
+
+http://localhost:3001
+
 🧪 Tests
 
 El proyecto utiliza Vitest y Supertest para realizar pruebas automatizadas sobre los endpoints.
@@ -185,7 +200,7 @@ npm test
 
 Actualmente existen 12 tests automatizados, todos funcionando correctamente.
 
-Authors
+Tests de Authors
 Rechazo de author sin nombre.
 Rechazo de email inválido.
 Rechazo de email duplicado.
@@ -194,11 +209,16 @@ Obtención de todos los authors.
 Obtención de un author por ID.
 Respuesta 404 cuando el author no existe.
 Eliminación correcta de un author.
-Posts
+Tests de Posts
 Rechazo de post sin author_id.
 Rechazo de post con título vacío.
 Rechazo de post con contenido vacío.
 Creación correcta de un post.
+
+Resultado actual:
+
+Test Files: 2 passed
+Tests:      12 passed
 📚 Documentación OpenAPI
 
 La API está documentada utilizando OpenAPI 3.0.3.
@@ -216,6 +236,11 @@ Respuestas.
 Códigos HTTP.
 Schemas.
 Errores de validación.
+
+Los endpoints están organizados mediante tags en:
+
+Authors
+Posts
 
 El archivo puede abrirse utilizando una herramienta compatible con OpenAPI/Swagger, como Swagger Editor o Swagger UI.
 
@@ -295,12 +320,15 @@ La conexión se configura mediante variables de entorno proporcionadas por Railw
 Las credenciales reales no se encuentran almacenadas en el repositorio.
 
 Endpoints de producción
+Obtener todos los autores
 
-Ejemplos:
+GET /authors
 
-GET https://proyecto-m2matias-mancini-production.up.railway.app/authors
-GET https://proyecto-m2matias-mancini-production.up.railway.app/posts
-🤖 Registro del uso de AI
+Obtener todos los posts
+
+GET /posts
+
+🤖 Registro del uso de IA
 
 Durante el desarrollo del proyecto se utilizó inteligencia artificial como herramienta de apoyo.
 
@@ -317,9 +345,13 @@ Revisar errores encontrados durante el desarrollo.
 
 El código fue implementado, probado y revisado durante el desarrollo del proyecto, utilizando la IA como herramienta de asistencia y aprendizaje.
 
-### 📸 Prompts utilizados
+📸 Prompts utilizados durante el desarrollo
 
-A continuación se incluyen capturas de los prompts utilizados durante el desarrollo del proyecto.
+Como parte del registro del uso de inteligencia artificial, se incluyen las capturas de los prompts utilizados durante el desarrollo del proyecto.
+
+Las imágenes se encuentran almacenadas en:
+
+docs/prompts/
 
 ### Prompt 1
 
