@@ -5,9 +5,11 @@ API REST desarrollada con Node.js, Express y PostgreSQL para gestionar autores y
 El proyecto implementa operaciones CRUD para las entidades authors y posts, validaciones de datos, manejo centralizado de errores, tests automatizados y documentación mediante OpenAPI.
 
 🔗 Enlaces del proyecto
+
 Repositorio de GitHub: Proyecto M2 - GitHub
 API desplegada en Railway: MiniBlog API - Railway
 API local: http://localhost:3001
+
 👨‍💻 Autor
 
 Matias Mancini
@@ -26,7 +28,9 @@ Gestionar errores HTTP mediante un middleware global.
 Persistir la información utilizando PostgreSQL.
 Ejecutar tests automatizados con Vitest y Supertest.
 Consultar la documentación de la API mediante OpenAPI.
+
 🛠️ Tecnologías utilizadas
+
 Node.js
 Express
 PostgreSQL
@@ -36,7 +40,9 @@ Supertest
 dotenv
 OpenAPI 3.0.3
 Swagger
+
 📁 Estructura del proyecto
+
 proyecto-m2_matias-mancini/
 │
 ├── docs/
@@ -89,7 +95,9 @@ proyecto-m2_matias-mancini/
 ├── package-lock.json
 ├── README.md
 └── vitest.config.js
+
 💻 Ejecución local
+
 Requisitos
 
 Antes de ejecutar el proyecto es necesario tener instalado:
@@ -98,14 +106,17 @@ Node.js
 npm
 PostgreSQL
 Git
+
 1. Clonar el repositorio
 git clone https://github.com/matiasg2026/Proyecto-M2_Matias-Mancini.git
 cd Proyecto-M2_Matias-Mancini
+
 2. Instalar las dependencias
 
 Desde la carpeta raíz del proyecto:
 
 npm install
+
 3. Configurar las variables de entorno
 
 Crear un archivo .env en la raíz del proyecto.
@@ -219,6 +230,7 @@ Resultado actual:
 
 Test Files: 2 passed
 Tests:      12 passed
+
 📚 Documentación OpenAPI
 
 La API está documentada utilizando OpenAPI 3.0.3.
@@ -245,6 +257,7 @@ Posts
 El archivo puede abrirse utilizando una herramienta compatible con OpenAPI/Swagger, como Swagger Editor o Swagger UI.
 
 🔗 Endpoints principales
+
 Authors
 Método	Endpoint	Descripción
 GET	/authors	Obtener todos los autores
@@ -260,6 +273,7 @@ GET	/posts/author/:authorId	Obtener posts de un autor
 POST	/posts	Crear un post
 PUT	/posts/:id	Actualizar un post
 DELETE	/posts/:id	Eliminar un post
+
 ✅ Validaciones
 
 La API cuenta con validaciones mediante middlewares.
@@ -301,6 +315,7 @@ Ejemplo de error:
 {
   "error": "El título no puede estar vacío"
 }
+
 🚂 Deployment en Railway
 
 La aplicación está desplegada en Railway y conectada a una instancia de PostgreSQL.
