@@ -316,3 +316,83 @@ Documentar los endpoints mediante OpenAPI.
 Revisar errores encontrados durante el desarrollo.
 
 El código fue implementado, probado y revisado durante el desarrollo del proyecto, utilizando la IA como herramienta de asistencia y aprendizaje.
+
+### 📸 Prompts utilizados
+
+A continuación se incluyen capturas de los prompts utilizados durante el desarrollo del proyecto.
+
+### Prompt 1
+
+![Prompt 1](./docs/prompts/Imagen01.png)
+
+### Prompt 2
+
+![Prompt 2](./docs/prompts/Imagen02.png)
+
+### Prompt 3
+
+![Prompt 3](./docs/prompts/Imagen03.png)
+
+### Prompt 4
+
+![Prompt 4](./docs/prompts/Imagen04.png)
+
+### Prompt 5
+
+![Prompt 5](./docs/prompts/Imagen05.png)
+
+### Prompt 6
+
+![Prompt 6](./docs/prompts/Imagen06.png)
+
+### Prompt 7
+
+![Prompt 7](./docs/prompts/Imagen07.png)
+
+### Prompt 8
+
+![Prompt 8](./docs/prompts/Imagen08.png)
+
+### Prompt 9
+
+![Prompt 9](./docs/prompts/Imagen09.png)
+
+### Prompt 10
+
+![Prompt 10](./docs/prompts/Imagen10.png)
+
+### Prompt 11
+
+![Prompt 11](./docs/prompts/Imagen11.png)
+
+### Prompt 12
+
+![Prompt 12](./docs/prompts/Imagen12.png)
+
+### Prompt 13
+
+![Prompt 13](./docs/prompts/Imagen13.png)
+
+### Prompt 14
+
+![Prompt 14](./docs/prompts/Imagen14.png)
+
+### Prompt 15
+
+![Prompt 15](./docs/prompts/Imagen15.png)
+
+### Prompt 16
+
+![Prompt 16](./docs/prompts/Imagen16.png)
+
+### Prompt 17
+
+![Prompt 17](./docs/prompts/Imagen17.png)
+
+### Prompt 18
+
+![Prompt 18](./docs/prompts/Imagen18.png)
+
+### Prompt 19
+
+![Prompt 19](./docs/prompts/Imagen19.png)

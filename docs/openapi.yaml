@@ -8,11 +8,21 @@ info:
 servers:
   - url: http://localhost:3001
     description: Servidor local
+  - url: https://proyecto-m2matias-mancini-production.up.railway.app
+    description: Servidor en producción - Railway
+
+tags:
+  - name: Authors
+    description: Operaciones relacionadas con los autores
+  - name: Posts
+    description: Operaciones relacionadas con las publicaciones
 
 paths:
 
   /authors:
     get:
+      tags:
+        - Authors
       summary: Obtener todos los autores
       description: Devuelve una lista con todos los autores registrados.
       responses:
@@ -26,6 +36,8 @@ paths:
                   $ref: "#/components/schemas/Author"
 
     post:
+      tags:
+        - Authors
       summary: Crear un nuevo autor
       description: Crea un nuevo autor en la base de datos.
       requestBody:
@@ -48,9 +60,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
-
   /authors/{id}:
     get:
+      tags:
+        - Authors
       summary: Obtener un autor por ID
       description: Devuelve un autor específico según su ID.
       parameters:
@@ -75,6 +88,8 @@ paths:
                 $ref: "#/components/schemas/Error"
 
     put:
+      tags:
+        - Authors
       summary: Actualizar un autor
       description: Actualiza los datos de un autor existente.
       parameters:
@@ -111,6 +126,8 @@ paths:
                 $ref: "#/components/schemas/Error"
 
     delete:
+      tags:
+        - Authors
       summary: Eliminar un autor
       description: Elimina un autor existente según su ID.
       parameters:
@@ -130,9 +147,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
-
   /posts:
     get:
+      tags:
+        - Posts
       summary: Obtener todos los posts
       description: Devuelve una lista con todos los posts registrados.
       responses:
@@ -146,6 +164,8 @@ paths:
                   $ref: "#/components/schemas/Post"
 
     post:
+      tags:
+        - Posts
       summary: Crear un nuevo post
       description: Crea un nuevo post en la base de datos.
       requestBody:
@@ -174,9 +194,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
-
   /posts/{id}:
     get:
+      tags:
+        - Posts
       summary: Obtener un post por ID
       description: Devuelve un post específico según su ID.
       parameters:
@@ -201,6 +222,8 @@ paths:
                 $ref: "#/components/schemas/Error"
 
     put:
+      tags:
+        - Posts
       summary: Actualizar un post
       description: Actualiza los datos de un post existente.
       parameters:
@@ -237,6 +260,8 @@ paths:
                 $ref: "#/components/schemas/Error"
 
     delete:
+      tags:
+        - Posts
       summary: Eliminar un post
       description: Elimina un post existente según su ID.
       parameters:
@@ -256,9 +281,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
-
   /posts/author/{authorId}:
     get:
+      tags:
+        - Posts
       summary: Obtener posts por autor
       description: Devuelve todos los posts asociados a un autor específico.
       parameters:
@@ -284,7 +310,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
-
 components:
   schemas:
 
@@ -303,6 +328,7 @@ components:
           example: juan@email.com
         bio:
           type: string
+          nullable: true
           example: Autor del MiniBlog
         created_at:
           type: string
@@ -324,6 +350,7 @@ components:
           example: juan@email.com
         bio:
           type: string
+          nullable: true
           example: Autor del MiniBlog
 
     Error:
