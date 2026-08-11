@@ -10,6 +10,7 @@ CREATE TABLE authors (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+
 CREATE TABLE posts (
     id SERIAL PRIMARY KEY,
     author_id INTEGER NOT NULL,
