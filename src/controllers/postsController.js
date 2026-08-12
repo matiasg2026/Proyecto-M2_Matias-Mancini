@@ -161,21 +161,25 @@ export const getPostsByAuthor = async (req, res, next) => {
 
     const { authorId } = req.params;
 
+    const authorExists = await authorExistsService(authorId);
+
+    if (!authorExists) {
+      return res.status(404).json({
+        error: "Author no encontrado"
+      });
+    }
+
     const posts = await getPostsByAuthorService(authorId);
 
     res.json(posts);
 
-
-   } 
-  
-  catch (error) {
+  } catch (error) {
 
     next(error);
 
   }
 
 };
-
 export const getPostsWithAuthors = async (req, res, next) => {
 
   try {

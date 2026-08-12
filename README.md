@@ -127,23 +127,18 @@ npm install
 
 3. Configurar las variables de entorno
 
-Crear un archivo .env en la raíz del proyecto.
+Crear un archivo `.env` en la raíz del proyecto.
 
 Ejemplo:
 
 PORT=3001
+DATABASE_PUBLIC_URL=postgresql://usuario:password@host:puerto/base_de_datos
 
-DB_USER=postgres
-DB_HOST=localhost
-DB_NAME=miniblog
-DB_PASSWORD=tu_password
-DB_PORT=5432
+Reemplazar los valores de la URL por los correspondientes a la base de datos PostgreSQL.
 
-Reemplazar tu_password por la contraseña correspondiente de PostgreSQL.
+El archivo `.env` contiene información sensible y no debe subirse al repositorio.
 
-El archivo .env contiene información sensible y no debe subirse al repositorio.
-
-El proyecto incluye un archivo .env.example como referencia para configurar las variables necesarias.
+El proyecto incluye un archivo `.env.example` como referencia para configurar las variables necesarias.
 
 🗄️ Base de datos
 
