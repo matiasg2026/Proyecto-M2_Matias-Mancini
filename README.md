@@ -6,11 +6,15 @@ El proyecto implementa operaciones CRUD para las entidades authors y posts, vali
 
 🔗 Enlaces del proyecto
 
-Repositorio de GitHub: [Proyecto M2 - GitHub](https://github.com/matiasg2026/Proyecto-M2_Matias-Mancini)
+**Repositorio de GitHub:**  
+[Proyecto M2 - GitHub](https://github.com/matiasg2026/Proyecto-M2_Matias-Mancini)
 
-API desplegada en Railway: MiniBlog API -proyecto-m2matias-mancini-production.up.railway.app
+**API desplegada en Railway:**  
+[MiniBlog API - Railway](https://proyecto-m2matias-mancini-production.up.railway.app)
 
-API local: http://localhost:3001
+**API local:**  
+[http://localhost:3001](http://localhost:3001)
+
 
 👨‍💻 Autor
 
