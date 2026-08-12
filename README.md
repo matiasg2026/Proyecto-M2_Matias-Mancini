@@ -45,6 +45,8 @@ Swagger
 
 📁 Estructura del proyecto
 
+```text
+
 proyecto-m2_matias-mancini/
 │
 ├── docs/
@@ -96,7 +98,7 @@ proyecto-m2_matias-mancini/
 ├── package.json
 ├── package-lock.json
 ├── README.md
-└── vitest.config.js
+└── vitest.config.js ```
 
 💻 Ejecución local
 
