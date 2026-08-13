@@ -7,7 +7,7 @@ El proyecto implementa operaciones CRUD para las entidades authors y posts, vali
 🔗 Enlaces del proyecto
 
 **Repositorio de GitHub:**  
-[Proyecto M2 - GitHub](https://github.com/matiasg2026/Proyecto-M2_Matias-Mancini)
+[Proyecto M2 - GitHub](https://github.com/matiasg2026/ProyectoM2_MatiasMancini)
 
 **API desplegada en Railway:**  
 [MiniBlog API - Railway](https://proyecto-m2matias-mancini-production.up.railway.app)
@@ -110,99 +110,199 @@ Requisitos
 
 Antes de ejecutar el proyecto es necesario tener instalado:
 
-Node.js
-npm
-PostgreSQL
-Git
+- Node.js
+- npm
+- PostgreSQL
+- Git
 
-1. Clonar el repositorio
-git clone https://github.com/matiasg2026/Proyecto-M2_Matias-Mancini.git
-cd Proyecto-M2_Matias-Mancini
+### 1. Clonar el repositorio
 
-2. Instalar las dependencias
+```bash
+git clone https://github.com/matiasg2026/ProyectoM2_MatiasMancini
+cd ProyectoM2_MatiasMancini
+```
+
+### 2. Instalar las dependencias
 
 Desde la carpeta raíz del proyecto:
 
+```bash
 npm install
+```
 
-3. Configurar las variables de entorno
-
-Crear un archivo `.env` en la raíz del proyecto.
-
-Ejemplo:
-
-PORT=3001
-DATABASE_PUBLIC_URL=postgresql://usuario:password@host:puerto/base_de_datos
-
-Reemplazar los valores de la URL por los correspondientes a la base de datos PostgreSQL.
-
-El archivo `.env` contiene información sensible y no debe subirse al repositorio.
-
-El proyecto incluye un archivo `.env.example` como referencia para configurar las variables necesarias.
-
-🗄️ Base de datos
+### 3. Crear la base de datos PostgreSQL
 
 La aplicación utiliza PostgreSQL.
 
-La base de datos utilizada localmente es:
+Para ejecutar el proyecto localmente es necesario crear una base de datos llamada `miniblog`.
 
-miniblog
-Setup SQL
+Desde PostgreSQL, ejecutar:
+
+```sql
+CREATE DATABASE miniblog;
+```
+
+Luego conectarse a la base de datos:
+
+```sql
+\c miniblog
+```
+
+### 4. Ejecutar el setup de la base de datos
 
 El archivo:
 
+```text
 sql/schema.sql
+```
 
-contiene las instrucciones necesarias para crear las tablas authors y posts, incluyendo:
+contiene las instrucciones necesarias para crear las tablas `authors` y `posts`, incluyendo:
 
-Claves primarias.
-Clave foránea.
-Restricciones NOT NULL.
-Restricción UNIQUE.
-Relación entre autores y publicaciones.
+- Claves primarias.
+- Clave foránea.
+- Restricciones `NOT NULL`.
+- Restricción `UNIQUE`.
+- Relación entre autores y publicaciones.
 
-Para ejecutar el setup desde PostgreSQL:
+Desde la terminal, ejecutar:
 
+```bash
 psql -U postgres -d miniblog -f sql/schema.sql
-Seed SQL
+```
+
+El comando solicitará la contraseña del usuario de PostgreSQL.
+
+### 5. Cargar datos iniciales
 
 El archivo:
 
+```text
 sql/seed.sql
+```
 
 contiene datos iniciales para realizar pruebas de la aplicación.
 
-Para ejecutar el seed:
+Ejecutar:
 
+```bash
 psql -U postgres -d miniblog -f sql/seed.sql
-Principales tablas
-Authors
-Campo	Tipo
-id	INTEGER
-name	VARCHAR
-email	VARCHAR
-bio	TEXT
-created_at	TIMESTAMP
-Posts
-Campo	Tipo
-id	INTEGER
-author_id	INTEGER
-title	VARCHAR
-content	TEXT
-published	BOOLEAN
-created_at	TIMESTAMP
+```
 
-La columna posts.author_id mantiene la relación con authors.id.
+Después de ejecutar estos dos archivos, la base de datos estará preparada para utilizar la API.
 
-▶️ Ejecutar la aplicación
-Modo desarrollo
+### 6. Configurar las variables de entorno
+
+Crear un archivo `.env` en la raíz del proyecto.
+
+Para ejecutar el proyecto de manera local, utilizar una URL de conexión a PostgreSQL con el siguiente formato:
+
+```env
+PORT=3001
+DATABASE_PUBLIC_URL=postgresql://USUARIO:CONTRASEÑA@localhost:5432/miniblog
+```
+
+Reemplazar:
+
+- `USUARIO` por el usuario de PostgreSQL.
+- `CONTRASEÑA` por la contraseña de PostgreSQL.
+- `localhost` por `localhost`, ya que la base de datos se ejecuta localmente.
+- `5432` por el puerto utilizado por PostgreSQL, que normalmente es `5432`.
+- `miniblog` por el nombre de la base de datos creada para el proyecto.
+
+Por ejemplo, si el usuario de PostgreSQL es `postgres`, la contraseña es `1234`, el puerto es `5432` y la base de datos se llama `miniblog`:
+
+```env
+PORT=3001
+DATABASE_PUBLIC_URL=postgresql://postgres:1234@localhost:5432/miniblog
+```
+
+⚠️ No utilizar literalmente `USUARIO` ni `CONTRASEÑA`. Deben reemplazarse por los datos correspondientes a la instalación local de PostgreSQL.
+
+Si la contraseña contiene caracteres especiales como `@`, `:`, `/`, `#`, `?` o `%`, estos deben codificarse correctamente para utilizarlos dentro de una URL de conexión.
+
+El archivo `.env` contiene información sensible y **no debe subirse al repositorio**.
+
+El proyecto incluye un archivo `.env.example` como referencia.
+
+### Windows: comando `psql` no reconocido
+
+Si Windows muestra un mensaje indicando que `psql` no es reconocido como comando, PostgreSQL puede estar instalado pero su carpeta `bin` no estar agregada al `PATH`.
+
+Una alternativa es ejecutar `psql.exe` utilizando su ruta completa. Por ejemplo:
+
+```bash
+"C:\Program Files\PostgreSQL\18\bin\psql.exe" -U postgres -d miniblog -f sql/schema.sql
+```
+
+La versión de PostgreSQL puede variar según la instalación.
+
+Lo mismo puede hacerse para ejecutar el archivo `seed.sql`:
+
+```bash
+"C:\Program Files\PostgreSQL\18\bin\psql.exe" -U postgres -d miniblog -f sql/seed.sql
+```
+
+### 7. Ejecutar la aplicación
+
+#### Modo desarrollo
+
+```bash
 npm run dev
-Modo normal
+```
+
+#### Modo normal
+
+```bash
 npm start
+```
 
 Por defecto, la aplicación se ejecuta en:
 
+```text
 http://localhost:3001
+```
+
+### 8. Probar la API
+
+Una vez iniciado el servidor, se pueden probar los endpoints utilizando Thunder Client, Postman o cualquier cliente HTTP.
+
+Por ejemplo:
+
+```text
+GET http://localhost:3001/authors
+```
+
+```text
+GET http://localhost:3001/posts
+```
+
+También se pueden probar los endpoints de creación, actualización y eliminación utilizando los métodos HTTP correspondientes.
+
+### 🗄️ Estructura de la base de datos
+
+#### Authors
+
+| Campo | Tipo |
+|---|---|
+| id | INTEGER |
+| name | VARCHAR |
+| email | VARCHAR |
+| bio | TEXT |
+| created_at | TIMESTAMP |
+
+#### Posts
+
+| Campo | Tipo |
+|---|---|
+| id | INTEGER |
+| author_id | INTEGER |
+| title | VARCHAR |
+| content | TEXT |
+| published | BOOLEAN |
+| created_at | TIMESTAMP |
+
+La columna `posts.author_id` mantiene la relación con `authors.id`.
+
 
 🧪 Tests
 
